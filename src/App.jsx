@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import MovieList from "./components/MovieList";
-import { fetchMovies } from "./services/api";
+import { searchAllMedia } from "./services/api";
 
 const App = () => {
-  const [movies, setMovies] = useState([]);
+  const [results, setResults] = useState([]);
 
   const handleSearch = async (query) => {
-    const results = await fetchMovies(query);
-    setMovies(results);
+    const unifiedResults = await searchAllMedia(query);
+    setResults(unifiedResults);
   };
 
   return (
     <div>
-      <h1>Cerca Film</h1>
+      <h1>Trova Film e Serie TV!</h1>
       <SearchBar onSearch={handleSearch} />
-      <MovieList movies={movies} />
+      <MovieList movies={results} />
     </div>
   );
 };
