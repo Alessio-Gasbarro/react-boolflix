@@ -1,31 +1,31 @@
 import React, { useState } from "react";
 
-const SearchBar = ({ onSearch }) => {
-    const [query, setQuery] = useState("");
-
-    const handleSearch = () => {
-        if (query.trim() !== "") {
-            onSearch(query);
-        }
-    };
-
-    const handleKeyDown = (e) => {
-        if (e.key === "Enter") {
-            handleSearch();
-        }
-    };
-
+const SearchBar = ({ query, setQuery, searchMovies }) => {
     return (
-        <div className="search-bar">
-            <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Inserisci qui"
-            />
-            <button onClick={handleSearch}>Cerca</button>
-        </div>
+        <header className='d-flex justifycontent-between'>
+
+            <div className='col-6 d-flex justify-content-start text-danger '>
+                <h1 className='logo'>BOOLFIX</h1>
+            </div>
+
+            <div className='col-6 d-flex justify-content-end '>
+
+                <input
+                    className='form-control mx-5 input-search'
+                    type="text"
+                    placeholder="Cerca un film..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                />
+
+                <button
+                    className='btn btn-danger text-dark btn-search'
+                    onClick={searchMovies}>
+                    Cerca
+                </button>
+
+            </div>
+        </header>
     );
 };
 

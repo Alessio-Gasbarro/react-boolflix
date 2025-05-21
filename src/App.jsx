@@ -1,23 +1,14 @@
-import React, { useState } from "react";
-import SearchBar from "./components/SearchBar";
-import MovieList from "./components/MovieList";
-import { searchAllMedia } from "./services/api";
+import MainPages from './pages/MainPages'
 
-const App = () => {
-  const [results, setResults] = useState([]);
 
-  const handleSearch = async (query) => {
-    const unifiedResults = await searchAllMedia(query);
-    setResults(unifiedResults);
-  };
+function App() {
+
 
   return (
-    <div>
-      <h1>Trova Film e Serie TV!</h1>
-      <SearchBar onSearch={handleSearch} />
-      <MovieList movies={results} />
-    </div>
-  );
-};
+    <>
+      <MainPages />
+    </>
+  )
+}
 
-export default App;
+export default App
