@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 const SearchBar = ({ query, setQuery, searchMovies }) => {
     return (
         <header className='d-flex justifycontent-between'>

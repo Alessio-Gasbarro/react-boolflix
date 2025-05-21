@@ -7,28 +7,32 @@ import MovieList from '../components/MovieList'
 
 const MainPages = () => {
 
-    // useState per la ricerca
+    // useState SEARCH
     const [search, setSearch] = useState('');
-
-    // useState per il risultato della ricerca
+    // useState SEARCH RESULT
     const [results, setResults] = useState([]);
 
-    // funzione per la ricerca dei film tramite chiamataa axios
+    // CHIAMATA AXIOS FILM E SERIE
     const searchMovies = async () => {
         try {
-            //Axios per Film
+            //AXIOS FILM
             const movieResponse = await axios.get(
                 `https://api.themoviedb.org/3/search/movie?api_key=8cbaf099e1ff70eeef04796ef3a0e18f&query=${search}`
             );
 
-            //QUI PER SERIE
+            //AXIOS TV SERIES
+            const tvResponse = await axios.get(
+                `https://api.themoviedb.org/3/search/tv?api_key=8cbaf099e1ff70eeef04796ef3a0e18f&query=${search}`
+            );
+
+            setResults([...tvResponse.data.results, ...movieResponse.data.results]);
+
         } catch (error) {
             console.error('Errore nella richiesta API:', error);
         }
     };
 
-
-
+    // RETURN FINALE
     return (
         <>
             <div className='row'>
