@@ -1,9 +1,9 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Searchbar from '../components/SearchBar'
 import MovieList from '../components/MovieList'
-
+import { fetchRecommendedMedia } from '../services/api'
 
 const MainPages = () => {
 
@@ -11,6 +11,17 @@ const MainPages = () => {
     const [search, setSearch] = useState('');
     // useState SEARCH RESULT
     const [results, setResults] = useState([]);
+
+    // useEffect NON SEARCH CONTENT
+    useEffect(() => {
+        const loadRecommended = async () => {
+            const recommended = await fetchRecommendedMedia();
+            setResults(recommended);
+        };
+        if (!search) {
+            loadRecommended();
+        }
+    }, [search]);
 
     // CHIAMATA AXIOS FILM E SERIE
     const searchMovies = async () => {
@@ -28,7 +39,7 @@ const MainPages = () => {
             setResults([...tvResponse.data.results, ...movieResponse.data.results]);
 
         } catch (error) {
-            console.error('Errore nella richiesta API:', error);
+            console.error('Qualquadra non cosa, potrebbe essere:', error);
         }
     };
 
@@ -52,10 +63,12 @@ const MainPages = () => {
                         </div>
                     ))}
                 </div>
+                {search && results.length === 0 && (
+                    <div className='text-center text-muted'>Nessun risultato trovato.</div>
+                )}
             </div>
-
         </>
-    )
-}
+    );
+};
 
 export default MainPages

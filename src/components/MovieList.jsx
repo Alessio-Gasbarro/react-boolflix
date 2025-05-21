@@ -25,11 +25,10 @@ const MovieList = ({ movie }) => {
     let starArray = [1, 2, 3, 4, 5];
     const vote = Math.ceil(movie.vote_average / 2);
 
-
     //PATH COPERTINE POSTS
     const imagePath = `https://image.tmdb.org/t/p/w342${movie.poster_path}`
 
-    //RETURN FINALE
+
     return (
         <div className='movie-card' style={{ width: '18rem' }}>
             <img className='card-img-top poster-img' src={imagePath} alt="" />

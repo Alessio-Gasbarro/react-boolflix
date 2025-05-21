@@ -18,8 +18,7 @@ const SearchBar = ({ query, setQuery, searchMovies }) => {
 
                 <button
                     className='btn btn-danger text-dark btn-search'
-                    onClick={searchMovies}>
-                    Cerca
+                    onClick={searchMovies}>Cerca
                 </button>
 
             </div>
